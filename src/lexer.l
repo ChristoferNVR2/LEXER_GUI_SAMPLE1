@@ -7,7 +7,7 @@ using namespace std;
 
 %option noyywrap
 
-DIGIT      [0-9]+
+INT      [0-9]+
 FLOAT      [0-9]+\.[0-9]+
 ID         [a-zA-Z_][a-zA-Z0-9_]*
 STRING     \"(\\.|[^\"])*\"
@@ -78,7 +78,7 @@ WS         [ \t\r\n]+
 "]"            { cout << "TOKEN_RBRACKET\n"; }
 
 {FLOAT}        { cout << "TOKEN_FLOAT_LITERAL: " << yytext << "\n"; }
-{DIGIT}        { cout << "TOKEN_INT_LITERAL: " << yytext << "\n"; }
+{INT}        { cout << "TOKEN_INT_LITERAL: " << yytext << "\n"; }
 {STRING}       { cout << "TOKEN_STRING_LITERAL: " << yytext << "\n"; }
 {CHAR}         { cout << "TOKEN_CHAR_LITERAL: " << yytext << "\n"; }
 
