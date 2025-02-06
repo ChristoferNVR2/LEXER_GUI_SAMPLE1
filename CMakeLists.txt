@@ -17,11 +17,10 @@ FLEX_TARGET(MyLexer ${FLEX_DIR}/lexer.l ${GEN_DIR}/lexer.cpp)
 
 add_executable(LEXER_GUI_SAMPLE1 ${SRC_DIR}/main.cpp
         ${GEN_DIR}/lexer.cpp
-        ${SRC_DIR}/tokens.h
-        ${SRC_DIR}/error_handler.cpp
-        src/TokenConstant.h
-        src/Token.cpp
-        src/Token.h)
+        ${SRC_DIR}/errorHandler.cpp
+        ${SRC_DIR}/TokenConstant.h
+        ${SRC_DIR}/Token.cpp
+        ${SRC_DIR}/Token.h)
 
 include_directories(${GEN_DIR})
 

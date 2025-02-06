@@ -7,21 +7,24 @@
 #include <string>
 #include "TokenConstant.h"
 
+extern int yylineno;
+void yyerror(const char *s, const char *token);
 
 class Token {
 public:
-    Token(TokenConstant tokenType, const std::string& lexeme);
-    TokenConstant getTokenType() const;
+    Token(TokenConstant tokenType, std::string  lexeme);
+    [[nodiscard]] TokenConstant getTokenType() const;
     void setTokenType(TokenConstant tokenType);
-    std::string getLexeme() const;
+    [[nodiscard]] std::string getLexeme() const;
     void setLexeme(const std::string& lexeme);
-    std::string toString() const;
+    [[nodiscard]] std::string toString() const;
 
 private:
     TokenConstant tokenType;
     std::string lexeme;
 };
 
+Token* yylex();
 
 
 #endif //TOKEN_H

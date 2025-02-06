@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "tokens.h"
+#include "Token.h"
 
 void yyerror(const char *s, const char *token) {
     std::cerr << "Error at line " << yylineno << ": " << s << " (" << token << ")" << std::endl;

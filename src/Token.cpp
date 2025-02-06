@@ -4,14 +4,16 @@
 
 #include "Token.h"
 
-Token::Token(TokenConstant tokenType, const std::string& lexeme)
-    : tokenType(tokenType), lexeme(lexeme) {}
+#include <utility>
+
+Token::Token(const TokenConstant tokenType, std::string  lexeme)
+    : tokenType(tokenType), lexeme(std::move(lexeme)) {}
 
 TokenConstant Token::getTokenType() const {
     return tokenType;
 }
 
-void Token::setTokenType(TokenConstant tokenType) {
+void Token::setTokenType(const TokenConstant tokenType) {
     this->tokenType = tokenType;
 }
 

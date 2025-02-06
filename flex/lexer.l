@@ -1,13 +1,16 @@
 %{
 #include <iostream>
-#include "tokens.h"
+#include "Token.h"
+#include "TokenConstant.h"
 
 using namespace std;
+
+#define YY_DECL Token* yylex()  // Tell Flex that yylex() returns a Token*
 %}
 
 %option noyywrap
 
-INT      [0-9]+
+INT        [0-9]+
 FLOAT      [0-9]+\.[0-9]+
 ID         [a-zA-Z_][a-zA-Z0-9_]*
 STRING     \"(\\.|[^\"])*\"
@@ -18,77 +21,77 @@ WS         [ \t\r\n]+
 
 %%
 
-"int"          { cout << "TOKEN_INT\n"; }
-"float"        { cout << "TOKEN_FLOAT\n"; }
-"double"       { cout << "TOKEN_DOUBLE\n"; }
-"char"         { cout << "TOKEN_CHAR\n"; }
-"bool"         { cout << "TOKEN_BOOL\n"; }
-"void"         { cout << "TOKEN_VOID\n"; }
-"if"           { cout << "TOKEN_IF\n"; }
-"else"         { cout << "TOKEN_ELSE\n"; }
-"for"          { cout << "TOKEN_FOR\n"; }
-"while"        { cout << "TOKEN_WHILE\n"; }
-"do"           { cout << "TOKEN_DO\n"; }
-"return"       { cout << "TOKEN_RETURN\n"; }
-"class"        { cout << "TOKEN_CLASS\n"; }
-"struct"       { cout << "TOKEN_STRUCT\n"; }
-"public"       { cout << "TOKEN_PUBLIC\n"; }
-"private"      { cout << "TOKEN_PRIVATE\n"; }
-"protected"    { cout << "TOKEN_PROTECTED\n"; }
-"namespace"    { cout << "TOKEN_NAMESPACE\n"; }
-"using"        { cout << "TOKEN_USING\n"; }
-"include"      { cout << "TOKEN_INCLUDE\n"; }
-"new"          { cout << "TOKEN_NEW\n"; }
-"delete"       { cout << "TOKEN_DELETE\n"; }
-"switch"       { cout << "TOKEN_SWITCH\n"; }
-"case"         { cout << "TOKEN_CASE\n"; }
-"break"        { cout << "TOKEN_BREAK\n"; }
-"continue"     { cout << "TOKEN_CONTINUE\n"; }
-"sizeof"       { cout << "TOKEN_SIZEOF\n"; }
-"typedef"      { cout << "TOKEN_TYPEDEF\n"; }
-"static"       { cout << "TOKEN_STATIC\n"; }
-"const"        { cout << "TOKEN_CONST\n"; }
+"int"          { return new Token(TokenConstant::TOKEN_INT, yytext); }
+"float"        { return new Token(TokenConstant::TOKEN_FLOAT, yytext); }
+"double"       { return new Token(TokenConstant::TOKEN_DOUBLE, yytext); }
+"char"         { return new Token(TokenConstant::TOKEN_CHAR, yytext); }
+"bool"         { return new Token(TokenConstant::TOKEN_BOOL, yytext); }
+"void"         { return new Token(TokenConstant::TOKEN_VOID, yytext); }
+"if"           { return new Token(TokenConstant::TOKEN_IF, yytext); }
+"else"         { return new Token(TokenConstant::TOKEN_ELSE, yytext); }
+"for"          { return new Token(TokenConstant::TOKEN_FOR, yytext); }
+"while"        { return new Token(TokenConstant::TOKEN_WHILE, yytext); }
+"do"           { return new Token(TokenConstant::TOKEN_DO, yytext); }
+"return"       { return new Token(TokenConstant::TOKEN_RETURN, yytext); }
+"class"        { return new Token(TokenConstant::TOKEN_CLASS, yytext); }
+"struct"       { return new Token(TokenConstant::TOKEN_STRUCT, yytext); }
+"public"       { return new Token(TokenConstant::TOKEN_PUBLIC, yytext); }
+"private"      { return new Token(TokenConstant::TOKEN_PRIVATE, yytext); }
+"protected"    { return new Token(TokenConstant::TOKEN_PROTECTED, yytext); }
+"namespace"    { return new Token(TokenConstant::TOKEN_NAMESPACE, yytext); }
+"using"        { return new Token(TokenConstant::TOKEN_USING, yytext); }
+"include"      { return new Token(TokenConstant::TOKEN_INCLUDE, yytext); }
+"new"          { return new Token(TokenConstant::TOKEN_NEW, yytext); }
+"delete"       { return new Token(TokenConstant::TOKEN_DELETE, yytext); }
+"switch"       { return new Token(TokenConstant::TOKEN_SWITCH, yytext); }
+"case"         { return new Token(TokenConstant::TOKEN_CASE, yytext); }
+"break"        { return new Token(TokenConstant::TOKEN_BREAK, yytext); }
+"continue"     { return new Token(TokenConstant::TOKEN_CONTINUE, yytext); }
+"sizeof"       { return new Token(TokenConstant::TOKEN_SIZEOF, yytext); }
+"typedef"      { return new Token(TokenConstant::TOKEN_TYPEDEF, yytext); }
+"static"       { return new Token(TokenConstant::TOKEN_STATIC, yytext); }
+"const"        { return new Token(TokenConstant::TOKEN_CONST, yytext); }
 
-"="            { cout << "TOKEN_ASSIGN\n"; }
-"+"            { cout << "TOKEN_PLUS\n"; }
-"-"            { cout << "TOKEN_MINUS\n"; }
-"*"            { cout << "TOKEN_MULTIPLY\n"; }
-"/"            { cout << "TOKEN_DIVIDE\n"; }
-"%"            { cout << "TOKEN_MODULO\n"; }
-"=="           { cout << "TOKEN_EQUAL\n"; }
-"!="           { cout << "TOKEN_NOT_EQUAL\n"; }
-"<"            { cout << "TOKEN_LESS\n"; }
-">"            { cout << "TOKEN_GREATER\n"; }
-"<="           { cout << "TOKEN_LESS_EQUAL\n"; }
-">="           { cout << "TOKEN_GREATER_EQUAL\n"; }
-"&&"           { cout << "TOKEN_AND\n"; }
-"||"           { cout << "TOKEN_OR\n"; }
-"!"            { cout << "TOKEN_NOT\n"; }
-"++"           { cout << "TOKEN_INCREMENT\n"; }
-"--"           { cout << "TOKEN_DECREMENT\n"; }
+"="            { return new Token(TokenConstant::TOKEN_ASSIGN, yytext); }
+"+"            { return new Token(TokenConstant::TOKEN_PLUS, yytext); }
+"-"            { return new Token(TokenConstant::TOKEN_MINUS, yytext); }
+"*"            { return new Token(TokenConstant::TOKEN_MULTIPLY, yytext); }
+"/"            { return new Token(TokenConstant::TOKEN_DIVIDE, yytext); }
+"%"            { return new Token(TokenConstant::TOKEN_MODULO, yytext); }
+"=="           { return new Token(TokenConstant::TOKEN_EQUAL, yytext); }
+"!="           { return new Token(TokenConstant::TOKEN_NOT_EQUAL, yytext); }
+"<"            { return new Token(TokenConstant::TOKEN_LESS, yytext); }
+">"            { return new Token(TokenConstant::TOKEN_GREATER, yytext); }
+"<="           { return new Token(TokenConstant::TOKEN_LESS_EQUAL, yytext); }
+">="           { return new Token(TokenConstant::TOKEN_GREATER_EQUAL, yytext); }
+"&&"           { return new Token(TokenConstant::TOKEN_AND, yytext); }
+"||"           { return new Token(TokenConstant::TOKEN_OR, yytext); }
+"!"            { return new Token(TokenConstant::TOKEN_NOT, yytext); }
+"++"           { return new Token(TokenConstant::TOKEN_INCREMENT, yytext); }
+"--"           { return new Token(TokenConstant::TOKEN_DECREMENT, yytext); }
 
-";"            { cout << "TOKEN_SEMICOLON\n"; }
-","            { cout << "TOKEN_COMMA\n"; }
-"."            { cout << "TOKEN_DOT\n"; }
-"{"            { cout << "TOKEN_LBRACE\n"; }
-"}"            { cout << "TOKEN_RBRACE\n"; }
-"("            { cout << "TOKEN_LPAREN\n"; }
-")"            { cout << "TOKEN_RPAREN\n"; }
-"["            { cout << "TOKEN_LBRACKET\n"; }
-"]"            { cout << "TOKEN_RBRACKET\n"; }
+";"            { return new Token(TokenConstant::TOKEN_SEMICOLON, yytext); }
+","            { return new Token(TokenConstant::TOKEN_COMMA, yytext); }
+"."            { return new Token(TokenConstant::TOKEN_DOT, yytext); }
+"{"            { return new Token(TokenConstant::TOKEN_LBRACE, yytext); }
+"}"            { return new Token(TokenConstant::TOKEN_RBRACE, yytext); }
+"("            { return new Token(TokenConstant::TOKEN_LPAREN, yytext); }
+")"            { return new Token(TokenConstant::TOKEN_RPAREN, yytext); }
+"["            { return new Token(TokenConstant::TOKEN_LBRACKET, yytext); }
+"]"            { return new Token(TokenConstant::TOKEN_RBRACKET, yytext); }
 
-{FLOAT}        { cout << "TOKEN_FLOAT_LITERAL: " << yytext << "\n"; }
-{INT}        { cout << "TOKEN_INT_LITERAL: " << yytext << "\n"; }
-{STRING}       { cout << "TOKEN_STRING_LITERAL: " << yytext << "\n"; }
-{CHAR}         { cout << "TOKEN_CHAR_LITERAL: " << yytext << "\n"; }
+{FLOAT}        { return new Token(TokenConstant::TOKEN_FLOAT_LITERAL, yytext); }
+{INT}          { return new Token(TokenConstant::TOKEN_INT_LITERAL, yytext); }
+{STRING}       { return new Token(TokenConstant::TOKEN_STRING_LITERAL, yytext); }
+{CHAR}         { return new Token(TokenConstant::TOKEN_CHAR_LITERAL, yytext); }
 
-{ID}           { cout << "TOKEN_IDENTIFIER: " << yytext << "\n"; }
+{ID}           { return new Token(TokenConstant::TOKEN_IDENTIFIER, yytext); }
 
-{COMMENT1}     { cout << "TOKEN_COMMENT_SINGLE_LINE\n"; }
-{COMMENT2}     { cout << "TOKEN_COMMENT_MULTI_LINE\n"; }
+{COMMENT1}     { return new Token(TokenConstant::TOKEN_COMMENT_SINGLE_LINE, yytext); }
+{COMMENT2}     { return new Token(TokenConstant::TOKEN_COMMENT_MULTI_LINE, yytext); }
 
 {WS}           { /* Ignore */ }
 
-.              { yyerror("Unknown Token", yytext); }
+.              { yyerror("Unknown Token", yytext); return new Token(TokenConstant::UNKNOWN, yytext); }
 
 %%

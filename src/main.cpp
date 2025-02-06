@@ -1,15 +1,16 @@
 #include <iostream>
 #include <fstream>
-#include "tokens.h"
+
+#include "Token.h"
+#include "TokenConstant.h"
 
 using namespace std;
 
-extern int yylex();   // Lexer function from lexer.l
-extern FILE *yyin;    // Flex uses this file pointer as input
+extern FILE* yyin;          // Flex uses this file pointer as input
 
-int main(int argc, char *argv[]) {
+
+int main(const int argc, char *argv[]) {
     if (argc > 1) {
-        // File input mode
         yyin = fopen(argv[1], "r");
         if (!yyin) {
             cerr << "Error: Could not open file " << argv[1] << endl;
@@ -17,13 +18,15 @@ int main(int argc, char *argv[]) {
         }
         cout << "Reading from file: " << argv[1] << endl;
     } else {
-        // Standard input mode
         cout << "Enter C++ code (Ctrl+D to end input):\n";
         yyin = stdin;
     }
 
-    // Start tokenizing
-    while (yylex()) {}
+    const Token* token = yylex();
+    while (token->getTokenType() != TokenConstant::TOKEN_EOF) {
+        cout << token->toString() << endl;
+        token = yylex();
+    }
 
     if (yyin != stdin) {
         fclose(yyin);

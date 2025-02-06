@@ -71,7 +71,8 @@ enum class TokenConstant {
     TOKEN_IDENTIFIER,
     TOKEN_COMMENT_SINGLE_LINE,
     TOKEN_COMMENT_MULTI_LINE,
-    TOKEN_EOF
+    TOKEN_EOF,
+    UNKNOWN
 };
 
 
