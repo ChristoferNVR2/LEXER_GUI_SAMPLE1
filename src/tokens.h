@@ -6,7 +6,7 @@
 #define TOKENS_H
 
 extern int yylineno;
-void yyerror(const char *s);
+void yyerror(const char *s, const char *token);
 int yylex();
 
 #endif //TOKENS_H

@@ -89,6 +89,6 @@ WS         [ \t\r\n]+
 
 {WS}           { /* Ignore */ }
 
-.              { yyerror("Unknown Token"); }
+.              { yyerror("Unknown Token", yytext); }
 
 %%

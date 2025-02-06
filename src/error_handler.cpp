@@ -5,6 +5,6 @@
 #include <iostream>
 #include "tokens.h"
 
-void yyerror(const char *s) {
-    std::cerr << "Error at line " << yylineno << ": " << s << std::endl;
+void yyerror(const char *s, const char *token) {
+    std::cerr << "Error at line " << yylineno << ": " << s << " (" << token << ")" << std::endl;
 }
