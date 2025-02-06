@@ -59,7 +59,8 @@ This project is a lexer for C++ code, implemented using Flex and C++. It reads C
     - `lexer.l` - Flex lexer definition
     - `main.cpp` - Main entry point
     - `error_handler.cpp` - Error handling functions
-    - `tokens.h` - Header file with function declarations and external variables
+    - `Token.h` - Header file with class and function declarations
+    - `Token.cpp` - Implementation of the Token class
 - `CMakeLists.txt` - CMake configuration file
 
 ## Contributing
