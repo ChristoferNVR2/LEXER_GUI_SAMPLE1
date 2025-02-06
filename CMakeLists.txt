@@ -4,6 +4,7 @@ project(LEXER_GUI_SAMPLE1)
 find_package(FLEX REQUIRED)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(FLEX_DIR ${CMAKE_SOURCE_DIR}/flex)
 set(GEN_DIR ${CMAKE_BINARY_DIR}/generated)
 
 file(MAKE_DIRECTORY ${GEN_DIR})
@@ -12,12 +13,15 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-FLEX_TARGET(MyLexer ${SRC_DIR}/lexer.l ${GEN_DIR}/lexer.cpp)
+FLEX_TARGET(MyLexer ${FLEX_DIR}/lexer.l ${GEN_DIR}/lexer.cpp)
 
 add_executable(LEXER_GUI_SAMPLE1 ${SRC_DIR}/main.cpp
         ${GEN_DIR}/lexer.cpp
         ${SRC_DIR}/tokens.h
-        ${SRC_DIR}/error_handler.cpp)
+        ${SRC_DIR}/error_handler.cpp
+        src/TokenConstant.h
+        src/Token.cpp
+        src/Token.h)
 
 include_directories(${GEN_DIR})
 
