@@ -53,6 +53,18 @@ This project is a lexer for C++ code, implemented using Flex and C++. It reads C
     ./LEXER_GUI_SAMPLE1
     ```
 
+### Running the GUI
+
+1. Ensure you have the required Python packages installed:
+    ```sh
+    pip install PyQt5
+    ```
+
+2. Run the GUI application:
+    ```sh
+    python gui/gui.py
+    ```
+
 ## Project Structure
 
 - `src/` - Source files
@@ -61,6 +73,8 @@ This project is a lexer for C++ code, implemented using Flex and C++. It reads C
     - `error_handler.cpp` - Error handling functions
     - `Token.h` - Header file with class and function declarations
     - `Token.cpp` - Implementation of the Token class
+- `gui/` - GUI files
+    - `gui.py` - Python script for the GUI
 - `CMakeLists.txt` - CMake configuration file
 
 ## Contributing
