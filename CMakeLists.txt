@@ -20,7 +20,8 @@ add_executable(LEXER_GUI_SAMPLE1 ${SRC_DIR}/main.cpp
         ${SRC_DIR}/errorHandler.cpp
         ${SRC_DIR}/TokenConstant.h
         ${SRC_DIR}/Token.cpp
-        ${SRC_DIR}/Token.h)
+        ${SRC_DIR}/Token.h
+        ${SRC_DIR}/TokenConstant.cpp)
 
 include_directories(${GEN_DIR})
 

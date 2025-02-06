@@ -75,6 +75,8 @@ enum class TokenConstant {
     UNKNOWN
 };
 
+const char* TokenConstantToString(TokenConstant tokenConstant);
+
 
 
 #endif //TOKENCONSTANT_H

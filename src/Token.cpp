@@ -5,6 +5,8 @@
 #include "Token.h"
 
 #include <utility>
+#include <iomanip>
+#include <sstream>
 
 Token::Token(const TokenConstant tokenType, std::string  lexeme)
     : tokenType(tokenType), lexeme(std::move(lexeme)) {}
@@ -25,6 +27,14 @@ void Token::setLexeme(const std::string& lexeme) {
     this->lexeme = lexeme;
 }
 
+// std::string Token::toString() const {
+//     return "Token{tokenType=" + std::to_string(static_cast<int>(tokenType)) + ", lexeme='" + lexeme + "'}";
+// }
+
 std::string Token::toString() const {
-    return "Token{tokenType=" + std::to_string(static_cast<int>(tokenType)) + ", lexeme='" + lexeme + "'}";
+    std::ostringstream oss;
+    oss << "Token{index=" << std::left << std::setw(2) << static_cast<int>(tokenType)
+        << ", name=" << std::left << std::setw(26) << TokenConstantToString(tokenType)
+        << ", lexeme='" << lexeme << "'}";
+    return oss.str();
 }
