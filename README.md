@@ -44,9 +44,10 @@ This project is a lexer for C++ code with a graphical user interface (GUI) built
 
 ## Usage
 
-1. Run the GUI application:
+1. Run the GUI application from gui directory:  
     ```sh
-    python gui/gui.py
+    cd gui 
+    python gui.py
     ```
 
 2. Use the GUI to browse for a C++ file or enter C++ code directly.
