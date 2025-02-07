@@ -41,6 +41,8 @@ const char* TokenConstantToString(const TokenConstant tokenType) {
         case TokenConstant::TOKEN_CONST: return "TOKEN_CONST";
         case TokenConstant::TOKEN_COUT: return "TOKEN_COUT";
         case TokenConstant::TOKEN_CIN: return "TOKEN_CIN";
+        case TokenConstant::TOKEN_CERR: return "TOKEN_CERR";
+        case TokenConstant::TOKEN_ENDL: return "TOKEN_ENDL";
         case TokenConstant::TOKEN_TRY: return "TOKEN_TRY";
         case TokenConstant::TOKEN_CATCH: return "TOKEN_CATCH";
         case TokenConstant::TOKEN_THROW: return "TOKEN_THROW";

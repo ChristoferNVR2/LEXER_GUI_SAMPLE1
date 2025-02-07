@@ -43,6 +43,8 @@ enum class TokenConstant {
     TOKEN_CONST,
     TOKEN_COUT,
     TOKEN_CIN,
+    TOKEN_CERR,
+    TOKEN_ENDL,
     TOKEN_TRY,
     TOKEN_CATCH,
     TOKEN_THROW,
