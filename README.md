@@ -23,12 +23,18 @@ This project is a lexer for C++ code with a graphical user interface (GUI) built
     cd LEXER_GUI_SAMPLE1
     ```
 
-2. Install the required Python packages:
+2. Set up a Python virtual environment:
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3. Install the required Python packages:
     ```sh
     pip install PyQt5
     ```
 
-3. Build the C++ lexer:
+4. Build the C++ lexer:
     ```sh
     mkdir build
     cd build
