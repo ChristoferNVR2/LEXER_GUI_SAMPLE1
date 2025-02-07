@@ -13,6 +13,7 @@ class MyWindow(QWidget):
         self.lexerOutputLabel = None
         self.clearButton = None
         self.runButton = None
+        self.saveButton = None
         self.sourceCodeInput = None
         self.sourceCodeLabel = None
         self.browseLayout = None
@@ -58,9 +59,10 @@ class MyWindow(QWidget):
         self.sourceCodeLabel = QLabel('Source Code:', self)
         self.layout.addWidget(self.sourceCodeLabel)
         self.sourceCodeInput = QTextEdit()
+        self.sourceCodeInput.textChanged.connect(self.on_text_changed)
         self.layout.addWidget(self.sourceCodeInput)
 
-        # run
+        # run button
         self.runButton = QPushButton('')
         self.runButton.setIcon(QIcon("run.png")) #icon
         self.runButton.setStyleSheet("""
@@ -79,7 +81,6 @@ class MyWindow(QWidget):
                 color: #ffffff;
             }
         """)
-
         self.layout.addWidget(self.runButton)
         self.runButton.clicked.connect(self.run)
 
@@ -104,6 +105,28 @@ class MyWindow(QWidget):
         self.layout.addWidget(self.clearButton)
         self.clearButton.clicked.connect(self.clear)
 
+        # save button
+        self.saveButton = QPushButton('Save')
+        self.saveButton.setStyleSheet("""
+            QPushButton{
+                background-color: #ffa500; /* Orange */
+                color: #ffffff;
+                border: 1px solid #ffa500;
+                padding: 5px 5px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 13px;
+                border-radius: 3px;
+            }
+            QPushButton:hover {
+                background-color: #cc8400; /* Darker Orange */
+                color: #ffffff;
+            }
+        """)
+        self.saveButton.setEnabled(False)
+        self.layout.addWidget(self.saveButton)
+        self.saveButton.clicked.connect(self.save_file)
+
         # lexer output
         self.lexerOutputLabel = QLabel('Lexer Output:', self)
         self.layout.addWidget(self.lexerOutputLabel)
@@ -119,6 +142,7 @@ class MyWindow(QWidget):
         filter_ = "cpp(*.cpp)"
         self.file = QFileDialog.getOpenFileName(qfd, "", path, filter_)[0]
         self.inFileBox.setText(self.file)
+        self.saveButton.setEnabled(False)
 
     def run(self):
         self.lexerOutput.setPlainText("")
@@ -138,6 +162,20 @@ class MyWindow(QWidget):
         self.inFileBox.clear()
         self.sourceCodeInput.clear()
         self.lexerOutput.clear()
+        self.file = ""
+        self.saveButton.setEnabled(False)
+
+    def save_file(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save File", "", "C++ Files (*.cpp);;All Files (*)", options=options)
+        if file_path:
+            with open(file_path, 'w') as file:
+                file.write(self.sourceCodeInput.toPlainText())
+
+    def on_text_changed(self):
+        if not self.file:
+            self.saveButton.setEnabled(True)
 
     def process_code(self, code):
         try:
