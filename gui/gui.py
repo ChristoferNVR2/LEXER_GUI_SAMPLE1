@@ -144,6 +144,11 @@ class MyWindow(QWidget):
         self.inFileBox.setText(self.file)
         self.saveButton.setEnabled(False)
 
+        if self.file:
+            with open(self.file, 'r') as file:
+                code = file.read()
+                self.sourceCodeInput.setPlainText(code)
+
     def run(self):
         self.lexerOutput.setPlainText("")
         try:
