@@ -7,9 +7,12 @@
 using namespace std;
 
 extern FILE* yyin;          // Flex uses this file pointer as input
+extern int yylineno;        // Ensure yylineno is declared
 
 
 int main(const int argc, char *argv[]) {
+    yylineno = 1; // Initialize line number
+
     if (argc > 1) {
         yyin = fopen(argv[1], "r");
         if (!yyin) {

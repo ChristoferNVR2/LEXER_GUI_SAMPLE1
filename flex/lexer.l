@@ -3,6 +3,8 @@
 #include "Token.h"
 #include "TokenConstant.h"
 
+extern int yylineno;
+
 using namespace std;
 
 #define YY_DECL Token* yylex()  // Tell Flex that yylex() returns a Token*
@@ -17,7 +19,7 @@ STRING     \"(\\.|[^\"])*\"
 CHAR       \'(\\.|[^'])\'
 COMMENT1   "//".*
 COMMENT2   "/\*".*?"\*/"
-WS         [ \t\r\n]+
+WS         [ \t\r]+
 
 %%
 
@@ -89,6 +91,8 @@ WS         [ \t\r\n]+
 
 {COMMENT1}     { return new Token(TokenConstant::TOKEN_COMMENT_SINGLE_LINE, yytext); }
 {COMMENT2}     { return new Token(TokenConstant::TOKEN_COMMENT_MULTI_LINE, yytext); }
+
+\n             { yylineno++; }
 
 {WS}           { /* Ignore */ }
 
