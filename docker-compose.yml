@@ -10,3 +10,4 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     network_mode: host
+    privileged: true  # Allows GUI apps to interact with X server
