@@ -1,9 +1,7 @@
 FROM jozo/pyqt5
 
-# Set the working directory
 WORKDIR /app
 
-# Install necessary system dependencies including CMake prerequisites
 RUN apt-get update && \
     apt-get install -y \
     g++ wget flex build-essential cmake \
@@ -19,21 +17,15 @@ RUN apt-get update && \
     x11-apps xvfb \
     && apt-get clean
 
-# Copy the application code
 COPY . /app
 
-# Install the latest version of CMake
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-linux-x86_64.sh && \
     chmod +x cmake-3.30.0-linux-x86_64.sh && \
     ./cmake-3.30.0-linux-x86_64.sh --skip-license --prefix=/usr/local
 
-# Build the project using CMake
 RUN mkdir -p build && cd build && \
     cmake .. && \
     make
-
-# Expose port (optional, if your app needs it)
-EXPOSE 80
 
 # Set environment variables for PyQt5 GUI support
 ENV QT_QPA_PLATFORM=xcb
