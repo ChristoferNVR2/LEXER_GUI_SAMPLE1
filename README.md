@@ -58,6 +58,32 @@ This project is a lexer for C++ code with a graphical user interface (GUI) built
 
 5. Use the **Save** button to save the entered code to a file.
 
+## Running the Application with Docker
+
+To run the application using Docker, follow these steps:
+
+1. Build the Docker image:
+    ```sh
+    docker-compose build
+    ```
+   
+2. Start the Docker container:
+    ```sh
+    docker-compose up -d
+    ```
+   
+3. Obtain the container ID:
+    ```sh
+    docker ps
+    ```
+   This will list all running containers. Look for the container ID of the `lexer_gui` container.
+
+4. Run the application in the container:
+    ```sh
+    docker exec --workdir=/app/gui <container_id> sh -c 'xvfb-run --auto-servernum sh -c cd gui && python3 gui.py'
+    ```
+   Replace `<container_id>` with the actual container ID obtained from the previous step.
+
 ## Screenshots
 
 ### Main Window
