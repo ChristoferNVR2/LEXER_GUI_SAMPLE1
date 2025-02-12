@@ -107,8 +107,12 @@ WS         [ \t\r]+
 "->*"          { return new Token(TokenConstant::TOKEN_ARROW_STAR, yytext); }
 "::"           { return new Token(TokenConstant::TOKEN_SCOPE, yytext); }
 "..."          { return new Token(TokenConstant::TOKEN_ELLIPSIS, yytext); }
+"#"            { return new Token(TokenConstant::TOKEN_HASH, yytext); }
+"&"            { return new Token(TokenConstant::TOKEN_AMPERSAND, yytext); }
+"|"            { return new Token(TokenConstant::TOKEN_PIPE, yytext); }
 
 ";"            { return new Token(TokenConstant::TOKEN_SEMICOLON, yytext); }
+":"            { return new Token(TokenConstant::TOKEN_COLON, yytext); }
 ","            { return new Token(TokenConstant::TOKEN_COMMA, yytext); }
 "."            { return new Token(TokenConstant::TOKEN_DOT, yytext); }
 "{"            { return new Token(TokenConstant::TOKEN_LBRACE, yytext); }

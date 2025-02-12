@@ -89,7 +89,11 @@ const char* TokenConstantToString(const TokenConstant tokenType) {
         case TokenConstant::TOKEN_ARROW_STAR: return "TOKEN_ARROW_STAR";
         case TokenConstant::TOKEN_SCOPE: return "TOKEN_SCOPE";
         case TokenConstant::TOKEN_ELLIPSIS: return "TOKEN_ELLIPSIS";
+        case TokenConstant::TOKEN_HASH: return "TOKEN_HASH";
+        case TokenConstant::TOKEN_AMPERSAND: return "TOKEN_AMPERSAND";
+        case TokenConstant::TOKEN_PIPE: return "TOKEN_PIPE";
         case TokenConstant::TOKEN_SEMICOLON: return "TOKEN_SEMICOLON";
+        case TokenConstant::TOKEN_COLON: return "TOKEN_COLON";
         case TokenConstant::TOKEN_COMMA: return "TOKEN_COMMA";
         case TokenConstant::TOKEN_DOT: return "TOKEN_DOT";
         case TokenConstant::TOKEN_LBRACE: return "TOKEN_LBRACE";
