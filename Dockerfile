@@ -1,10 +1,9 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM jozo/pyqt5
 
 # Set the working directory
 WORKDIR /app
 
-# Install necessary system dependencies for PyQt5 and GUI apps
+# Install necessary system dependencies including CMake prerequisites
 RUN apt-get update && \
     apt-get install -y \
     g++ wget flex build-essential cmake \
@@ -23,16 +22,12 @@ RUN apt-get update && \
 # Copy the application code
 COPY . /app
 
-# Upgrade pip and install required Python packages
-RUN pip install --upgrade pip && \
-    pip install PyQt5
-
 # Install the latest version of CMake
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-linux-x86_64.sh && \
     chmod +x cmake-3.30.0-linux-x86_64.sh && \
     ./cmake-3.30.0-linux-x86_64.sh --skip-license --prefix=/usr/local
 
-# Build the project if needed
+# Build the project using CMake
 RUN mkdir -p build && cd build && \
     cmake .. && \
     make
@@ -46,6 +41,10 @@ ENV DISPLAY=:0
 ENV QT_X11_NO_MITSHM=1
 ENV XDG_RUNTIME_DIR=/tmp/runtime-root
 
-# Start the GUI application
-#CMD ["sh", "-c", "cd gui && xvfb-run -a python gui.py"]
-CMD ["xvfb-run", "-a", "sh", "-c", "cd gui && python gui.py"]
+# Switch to qtuser (which exists in jozo/pyqt5 image)
+USER qtuser
+
+RUN mkdir -p /tmp/runtime-root && \
+    chmod 0700 /tmp/runtime-root
+
+CMD ["xvfb-run", "--auto-servernum", "sh", "-c", "cd gui && python3 gui.py"]
